@@ -1,22 +1,18 @@
 import minimalmodbus
 import serial
-import pandas as pd
-import time
 
 class MightyZap():
-    def __init__(self, port='COM4', address=1, initialize=False):
+    def __init__(self, port='COM4', address=1):
         """
         Initializes the MightyZap class.
 
-        :param port: The serial port to connect to (default 'COM3').
+        :param port: The serial port to connect to (default 'COM4').
         :param address: The Modbus address of the device (default 1).
         :param initialize: If True, initializes the device settings upon creation.
         """
         self.port = port
         self.address = address
         self.open()
-        if initialize: 
-            self.initialize()
     
     def open(self):
         """
@@ -56,14 +52,8 @@ class MightyZap():
         return data
 
     def close(self):
-        """Close the serial connection."""
-        if self.serial.is_open:
-            self.serial.close()
-
-    def __enter__(self):
-        """Enter the runtime context related to this object."""
-        return self
-
-    def __exit__(self, exc_type, exc_value, traceback):
-        """Exit the runtime context related to this object."""
-        self.close()
+        """
+        Closes the serial connection to the MightyZap device if it is open.
+        """
+        if hasattr(self, 'inst') and self.inst.serial.is_open:
+            self.inst.serial.close()
