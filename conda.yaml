@@ -1,0 +1,20 @@
+name: crab
+channels:
+  - conda-forge
+  - defaults
+  - anaconda
+dependencies:
+  - jupyter
+  - matplotlib
+  - notebook
+  - numpy
+  - pandas
+  - pip
+  - python==3.10
+  - scipy
+  - influxdb
+  - pyserial
+  - pyvisa
+  - pyvisa-py
+  - zeroconf
+  - minimalmodbus
